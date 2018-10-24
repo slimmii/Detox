@@ -43,8 +43,7 @@ class SimulatorScreenshotter extends ScreenshotArtifactPlugin {
 
   createTestArtifact() {
     const { context, appleSimUtils } = this;
-    const temporaryFilePath = makeid() + '.png';
-    console.log(temporaryFilePath);
+    const temporaryFilePath = __dirname + '/' + makeid() + '.png';
 
     return new Artifact({
       name: 'SimulatorScreenshot',
@@ -55,6 +54,7 @@ class SimulatorScreenshotter extends ScreenshotArtifactPlugin {
 
       async save(artifactPath) {
         log.debug({ event: 'MOVE_FILE' }, `moving file "${temporaryFilePath}" to "${artifactPath}"`);
+        console.log('Moving from ' + temporaryFilePath + ' to ' + artifactPath);
         await fs.move(temporaryFilePath, artifactPath);
       },
 
