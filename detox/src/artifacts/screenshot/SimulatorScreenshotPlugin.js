@@ -5,6 +5,16 @@ const tempfile = require('tempfile');
 const Artifact = require('../templates/artifact/Artifact');
 const ScreenshotArtifactPlugin = require('./ScreenshotArtifactPlugin');
 
+function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 10; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
 class SimulatorScreenshotter extends ScreenshotArtifactPlugin {
   constructor(config) {
     super(config);
@@ -29,9 +39,12 @@ class SimulatorScreenshotter extends ScreenshotArtifactPlugin {
     }
   }
 
+
+
   createTestArtifact() {
     const { context, appleSimUtils } = this;
-    const temporaryFilePath = tempfile('.png');
+    const temporaryFilePath = makeid() + '.png';
+    console.log(temporaryFilePath);
 
     return new Artifact({
       name: 'SimulatorScreenshot',
@@ -47,7 +60,7 @@ class SimulatorScreenshotter extends ScreenshotArtifactPlugin {
 
       async discard() {
         log.debug({ event: 'REMOVE_FILE' }, `removing temp file: ${temporaryFilePath}`);
-        await fs.remove(temporaryFilePath);
+        // await fs.remove(temporaryFilePath);
       },
     });
   }
