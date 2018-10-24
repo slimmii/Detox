@@ -60,7 +60,7 @@ class SimulatorScreenshotter extends ScreenshotArtifactPlugin {
 
       async discard() {
         log.debug({ event: 'REMOVE_FILE' }, `removing temp file: ${temporaryFilePath}`);
-        // await fs.remove(temporaryFilePath);
+        await fs.remove(temporaryFilePath);
       },
     });
   }
