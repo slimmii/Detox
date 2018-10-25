@@ -35,7 +35,7 @@ function buildFramework () {
   detoxSourcePath="${1}"
   echo "Building Detox.framework from ${detoxSourcePath}..."
   mkdir -p "${detoxFrameworkDirPath}"
-  "${detoxRootPath}"/scripts/build_universal_framework.sh "${detoxSourcePath}"/Detox.xcodeproj "${detoxFrameworkDirPath}" &> "${detoxFrameworkDirPath}"/detox_ios.log
+  "${detoxRootPath}"/scripts/build_universal_framework.sh "${detoxSourcePath}"/Detox.xcodeproj "${detoxFrameworkDirPath}"
 }
 
 function main () {
